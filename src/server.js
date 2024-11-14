@@ -4,6 +4,7 @@ import exitHook from 'async-exit-hook'
 import { APIs_V1 } from './routes/v1'
 import { env } from '~/config/environment'
 import { CONNECT_DB, CLOSE_DB } from '~/config/mongodb'
+import { errorHandlingMiddleware } from './middlewares/errorHandlingMiddleware'
 
 
 (async () => {
@@ -33,6 +34,8 @@ const START_SERVER = () => {
 
   app.use('/v1', APIs_V1)
 
+  app.use(errorHandlingMiddleware)
+
   app.listen(port, hostname, () => {
     console.log(`Hello, I ${env.AUTHOR} am running at ${hostname}:${port}`)
   })
@@ -41,5 +44,3 @@ const START_SERVER = () => {
     CLOSE_DB()
   })
 }
-
-
