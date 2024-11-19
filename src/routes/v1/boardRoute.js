@@ -7,7 +7,7 @@ const Router = express.Router()
 
 Router.route('/')
   .get((req, res) => {
-    res.status(StatusCodes.OK).json({Massage: 'Day la board list'})
+    res.status(StatusCodes.OK).json({ Massage: 'List Boards' })
   })
   .post(boardValidation.createNew, boardController.createNew)
 

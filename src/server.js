@@ -41,7 +41,7 @@ const START_SERVER = () => {
   app.use(errorHandlingMiddleware)
 
   app.listen(port, hostname, () => {
-    console.log(`Hello, I ${env.AUTHOR} am running at ${hostname}:${port}`)
+    console.log(`Hello, I am ${env.AUTHOR} running at ${hostname}:${port}`)
   })
 
   exitHook(() => {
