@@ -1,15 +1,12 @@
-import { slugify } from '~/utils/formatters'
 import { boardModel } from '~/models/boardModel'
 import ApiError from '~/utils/ApiError'
 import { StatusCodes } from 'http-status-codes'
 import { cloneDeep } from 'lodash'
 
 const createNew = async (reqBody) => {
-  // eslint-disable-next-line no-useless-catch
   try {
     const newBoard = {
-      ...reqBody,
-      slug: slugify(reqBody.title)
+      ...reqBody
     }
 
     const createdBoard = await boardModel.createNew(newBoard)
@@ -28,10 +25,12 @@ const getDetail = async (boardId) => {
     }
 
     const resBoard = cloneDeep(board)
+    // Gắn danh sách các cards vào mỗi column
     resBoard.columns.forEach(column => {
       column.cards = resBoard.cards.filter(card => card.columnId.toString() === column._id.toString())
     })
 
+    // Xóa trường cards khỏi kết quả trả về (đã phân phối vào columns)
     delete resBoard.cards
 
     return resBoard
