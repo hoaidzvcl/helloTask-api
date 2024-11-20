@@ -44,9 +44,9 @@ const update = async (boardId, reqBody) => {
       updatedAt: Date.now()
     }
 
-    const updatedData = await boardModel.update(boardId, updateData)
+    const updatedBoard = await boardModel.update(boardId, updateData)
 
-    return updatedData
+    return updatedBoard
   } catch (error) { throw error }
 }
 
