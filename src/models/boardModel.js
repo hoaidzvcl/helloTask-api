@@ -92,7 +92,7 @@ const pushColumnOrderIds = async (column) => {
     const result = await GET_DB().collection(BOARD_COLLECTION_NAME).findOneAndUpdate(
       { _id: new ObjectId(String(column.boardId)) },
       { $push: { columnOrderIds: new ObjectId(String(column._id)) } },
-      { ReturnDocument: 'after' }
+      { returnDocument: 'after' }
     )
 
     return result
@@ -105,14 +105,14 @@ const update = async (boardId, updateData) => {
   try {
     Object.keys(updateData).forEach(fieldName => {
       if (INVALID_UPDATE_FIELDS.includes(fieldName)) {
-        delete updateData(fieldName)
+        delete updateData[fieldName]
       }
     })
 
     const result = await GET_DB().collection(BOARD_COLLECTION_NAME).findOneAndUpdate(
       { _id: new ObjectId(String(boardId)) },
       { $set: updateData },
-      { ReturnDocument: 'after' }
+      { returnDocument: 'after' }
     )
 
     return result
