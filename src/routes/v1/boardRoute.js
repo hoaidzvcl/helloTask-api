@@ -15,4 +15,7 @@ Router.route('/:id')
   .get(boardController.getDetail)
   .put(boardValidation.update, boardController.update)
 
+Router.route('/supports/move_card')
+  .put(boardValidation.moveCardToDiffirentColumns, boardController.moveCardToDiffirentColumns)
+
 export const boardRoute = Router
