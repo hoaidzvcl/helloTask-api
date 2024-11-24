@@ -12,6 +12,7 @@ export const slugify = (val) => {
     .replace(/-+/g, '-') // remove consecutive hyphens
 }
 
+// Lọc dữ liệu để trả về, tránh 1 vài dữ liệu như password
 export const pickUser = (user) => {
   if (!user) return {}
   return pick(user, ['id', 'email', 'username', 'displayName', 'avatar', 'role', 'isActive', 'createdAt', 'updatedAt'])
