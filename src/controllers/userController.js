@@ -20,7 +20,7 @@ const login = async (req, res, next) => {
     const result = await userService.login(req.body)
 
     // Xử lý trả về http only cookie cho trình duyệt
-    console.log(result)
+    // console.log(result)
 
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
